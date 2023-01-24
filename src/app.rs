@@ -1,3 +1,4 @@
+use markdown;
 use yew::prelude::*;
 
 #[function_component(App)]
@@ -10,8 +11,10 @@ pub fn app() -> Html {
             counter.set(value);
         }
     };
+    let md = markdown::to_html("# Hello, world!");
     html! {
         <main>
+            {Html::from_html_unchecked(md.into())}
             <button {onclick}>{"+1"}</button>
             <p>{*counter}</p>
         </main>
